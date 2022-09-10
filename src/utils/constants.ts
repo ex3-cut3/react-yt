@@ -12,14 +12,19 @@ import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
 import { SvgIcon } from '@mui/material';
+import PersonalInfoForm from '../components/Forms/Sign-up/PersonalInfoForm';
+import PasswordForm from '../components/Forms/Sign-up/PasswordForm';
 
 export const LOGO_IMG_LINK = 'https://i.ibb.co/s9Qys2j/logo.png';
 export const DEFAULT_CATEGORY = 'New';
 export const DEFAULT_COLOR = '#FF0000';
 export enum ENDPOINTS {
     SEARCH = '/search',
-
 }
+
+export const steps = [ 'General info', 'Password'];
+export const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+export const signUpForms = [PersonalInfoForm, PasswordForm];
 
 export const categories: { name: string, icon: typeof SvgIcon }[] = [
     {name: DEFAULT_CATEGORY, icon: HomeIcon,},

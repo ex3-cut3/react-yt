@@ -19,7 +19,6 @@ const SearchBar = () => {
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        console.log(e);
         if (localSearchQuery) {
             setSearchQuery(localSearchQuery);
             navigate('/search/' + localSearchQuery)

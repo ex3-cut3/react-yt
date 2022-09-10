@@ -204,3 +204,17 @@ a {
     background-color: var(--base-color);
     filter: brightness(0.9);
     }
+
+.form-container .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: var(--base-color) !important;
+    }
+
+.form-container .MuiFormHelperText-contained{
+    color: var(--base-color) !important;
+    }
+.MuiPaper-root{
+    background-image: none !important;
+    }
+.breadcrumb{
+
+    }

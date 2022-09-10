@@ -27,7 +27,8 @@ const Feed = () => {
             <Box className = 'category-sidebar' sx = {{
                 height: {sx: 'auto', md: '92vh'},
                 borderRight: '1px solid #3d3d3d',
-                px: {sx: 1, md: 2}
+                px: {sx: 1, md: 2},
+                backgroundImage: 'linear-gradient(to bottom, #111, #000)'
             }}>
                 <Sidebar/>
                 <Typography className = 'copyright' variant = 'body2' sx = {{

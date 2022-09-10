@@ -6,34 +6,51 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { Suspense, useEffect } from 'react';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { DEFAULT_COLOR } from './utils/constants';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function App() {
     const location = useLocation();
     const color = useLocalStorage('color');
+    const theme = createTheme({
+        palette: {
+            error: {
+                main: '#F00'
+            },
+            secondary: {
+                main: '#D40000'
+            },
+            primary: {
+                main: 'rgb(255,255,255)'
+            },
+            mode: 'dark',
+        },
+    })
 
     useEffect(() => {
         document.documentElement.style.setProperty('--base-color', color ? color : DEFAULT_COLOR);
     }, []);
 
     return (
-        <Box sx = {{backgroundColor: '#000'}}>
-            <Navbar/>
-            <TransitionGroup component = {null}>
-                <CSSTransition key = {location.key} classNames = "fade" timeout = {300}>
-                    <Routes>
-                        {
-                            routes.map(route =>
-                                <Route key = {route.path} element = {
-                                    <Suspense fallback = ''>
-                                        <route.element/>
-                                    </Suspense>} path = {route.path}>
-                                </Route>
-                            )
-                        }
-                    </Routes>
-                </CSSTransition>
-            </TransitionGroup>
-        </Box>
+        <ThemeProvider theme = {theme}>
+            <Box sx = {{backgroundColor: '#000'}}>
+                <Navbar/>
+                <TransitionGroup component = {null}>
+                    <CSSTransition key = {location.key} classNames = "fade" timeout = {300}>
+                        <Routes>
+                            {
+                                routes.map(route =>
+                                    <Route key = {route.path} element = {
+                                        <Suspense fallback = ''>
+                                            <route.element/>
+                                        </Suspense>} path = {route.path}>
+                                    </Route>
+                                )
+                            }
+                        </Routes>
+                    </CSSTransition>
+                </TransitionGroup>
+            </Box>
+        </ThemeProvider>
     )
 }
 
