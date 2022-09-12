@@ -1,6 +1,6 @@
 // @ts-ignore
 import styles from './folderTree.module.scss';
-import TreeItem from '../../components/treeItem/TreeItem';
+import TreeItem from './treeItem/TreeItem';
 
 const FolderTree = () => {
     const treeData = {

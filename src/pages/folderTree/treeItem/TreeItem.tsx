@@ -1,12 +1,14 @@
-import { Menu, MenuItem } from '@mui/material';
-import { useState } from 'react';
+import { ListItemIcon, Menu, MenuItem } from '@mui/material';
+import React, { useState } from 'react';
+import { CopyAll, Edit } from '@mui/icons-material';
 
 const TreeItem = ({itemTree}: { itemTree: ITreeItem }) => {
     const [ isFolderOpen, setIsFolderOpen ] = useState(false);
-    const isFolder = itemTree.childFolders && itemTree.childFolders.length > 0;
     const [ isEditing, setIsEditing ] = useState(false);
+    const [ childFolders, setChildFolders ] = useState<ITreeItem[]>(itemTree.childFolders || []);
     const [ shownItemName, setShownItemName ] = useState(itemTree.name);
-    const [ contextMenuPos, setContextMenuPos ] = useState<{x: number, y: number} | null>(null);
+    const [ contextMenuPos, setContextMenuPos ] = useState<{ x: number, y: number } | null>(null);
+    const isFolder = !!itemTree.childFolders?.length;
 
     function toggle() {
         setIsFolderOpen(prevState => !prevState);
@@ -34,17 +36,24 @@ const TreeItem = ({itemTree}: { itemTree: ITreeItem }) => {
             setIsEditing(false);
             setShownItemName(e.target.value)
         }
+        else if (e.key === 'Escape'){
+            setIsEditing(false)
+        }
     }
 
     const handleContextMenuClose = () => {
         setContextMenuPos(null);
     };
 
+    function handleAddChild() {
+        setChildFolders((prevChilds)=>[...prevChilds, {name: 'new stuff '+ Math.random().toFixed(3)}]);
+    }
+
     async function handleCopy() {
         handleContextMenuClose()
         try {
             await navigator.clipboard.writeText(shownItemName)
-            alert('Async: Copying to clipboard was successful: '+shownItemName);
+            alert('Async: Copying to clipboard was successful: ' + shownItemName);
         } catch (e) {
             alert(e);
         }
@@ -72,7 +81,9 @@ const TreeItem = ({itemTree}: { itemTree: ITreeItem }) => {
                 <>
                     <div
                         style = {{
-                            fontWeight: 'bold', color: `${isFolder ? 'var(--base-color)' : '#FFF'}`, cursor: 'pointer',
+                            fontWeight: 'bold',
+                            color: `${isFolder ? 'var(--base-color)' : '#FFF'}`,
+                            cursor: 'pointer',
                             lineHeight: 1.5,
                         }}
                         onClick = {toggle}
@@ -86,21 +97,34 @@ const TreeItem = ({itemTree}: { itemTree: ITreeItem }) => {
                         open = {contextMenuPos !== null}
                         onClose = {handleContextMenuClose}
                         anchorReference = "anchorPosition"
-                        anchorPosition = {contextMenuPos !== null
-                            ? {top: contextMenuPos.y, left: contextMenuPos.x}
-                            : undefined}
+                        anchorPosition = {contextMenuPos !== null ? {
+                            top: contextMenuPos.y,
+                            left: contextMenuPos.x
+                        } : undefined}
                     >
-                        <MenuItem onClick = {handleCopy}>Copy</MenuItem>
-                        <MenuItem onClick = {handleEdit}>Edit</MenuItem>
-                    </Menu></>
+                        <MenuItem onClick = {handleCopy}>
+                            <ListItemIcon>
+                                <CopyAll fontSize = "small"/>
+                            </ListItemIcon>
+                            Copy
+                        </MenuItem>
+                        <MenuItem onClick = {handleEdit}>
+                            <ListItemIcon>
+                                <Edit fontSize = "small"/>
+                            </ListItemIcon>
+                            Edit
+                        ♠</MenuItem>
+                    </Menu>
+                </>
             }
 
             {isFolder && isFolderOpen &&
                 <ul>
-                    {itemTree.childFolders?.map((childFolder) =>
+                    {childFolders.map((childFolder) =>
                         <TreeItem key = {childFolder.name}
                                   itemTree = {childFolder}/>
                     )}
+                    <li style={{color: 'white', cursor: 'pointer'}} onClick = {handleAddChild}>Add Item</li>
                 </ul>}
         </li>
     );

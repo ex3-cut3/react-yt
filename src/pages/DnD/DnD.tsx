@@ -58,6 +58,7 @@ const DnD = () => {
     function handleDropOnEmptyBoard(e: React.DragEvent<HTMLDivElement>, boardOnDropped: IBoard) {
         // @ts-ignore
         e.target.style.boxShadow = 'none';
+        e.preventDefault()
 
         boardOnDropped.items.push(currentDragCard)
         const currentCardIdx = currentBoard.items.findIndex(item => item.id === currentDragCard.id);

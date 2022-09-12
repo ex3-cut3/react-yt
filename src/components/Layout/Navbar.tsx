@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { DEFAULT_CATEGORY, DEFAULT_COLOR, LOGO_IMG_LINK, settings } from '../../utils/constants';
 import {
     Avatar,
@@ -20,6 +20,7 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { DebounceInput } from 'react-debounce-input';
 import Breadcrumb from './Breadcrumbs';
 import { Settings } from '@mui/icons-material';
+import SearchBar from './SearchBar';
 
 const Navbar = () => {
     const {setSelectedCategory} = useActions();
@@ -28,7 +29,6 @@ const Navbar = () => {
     const navigate = useNavigate();
     const colorFromLS = useLocalStorage('color');
     const [ color, setColor ] = useState(colorFromLS ? colorFromLS : DEFAULT_COLOR);
-    const SearchBar = lazy(() => import('./SearchBar'));
     const [ anchorElUser, setAnchorElUser ] = useState<null | HTMLElement>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -80,11 +80,9 @@ const Navbar = () => {
                 value = {color!}
                 debounceTimeout = {200}
                 onChange = {useCallback(handleColorChange, [])}/>
-            <Suspense fallback>
-                <SearchBar/>
-            </Suspense>
+            <SearchBar/>
 
-            <Breadcrumb />
+            <Breadcrumb/>
 
             <Box>
                 <Tooltip TransitionComponent = {Fade} TransitionProps = {{timeout: 500}} leaveDelay = {200} arrow
@@ -98,7 +96,7 @@ const Navbar = () => {
                     vertical: 'bottom',
                     horizontal: 'left',
                 }}
-                      sx={{mt: 1.5}}
+                      sx = {{mt: 1.5}}
                       keepMounted
                     // transformOrigin = {{
                     //     vertical: 'center',
@@ -109,7 +107,7 @@ const Navbar = () => {
                     {settings.map((setting) => (
                         <MenuItem key = {setting} onClick = {handleCloseUserMenu}>
                             <ListItemIcon>
-                                <Settings fontSize="small" />
+                                <Settings fontSize = "small"/>
                             </ListItemIcon>
                             <Typography textAlign = "center">{setting}</Typography>
                         </MenuItem>
