@@ -31,12 +31,6 @@ const Feed = () => {
                 backgroundImage: 'linear-gradient(to bottom, #111, #000)'
             }}>
                 <Sidebar/>
-                <Typography className = 'copyright' variant = 'body2' sx = {{
-                    mt: 1.5,
-                    color: '#FFF',
-                    textAlign: 'center',
-
-                }}>Copyright as for ex3-cut3</Typography>
             </Box>
 
             <Box p = {2} sx = {{

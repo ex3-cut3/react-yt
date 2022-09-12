@@ -43,7 +43,7 @@ const Breadcrumb = () => {
                     const el = routes.find(route => route.path === to)?.name;
 
                     return last ? (
-                        <Typography sx = {{filter: 'grayscale(0.4)', pointerEvents: 'none', userSelect: 'none'}}
+                        <Typography sx = {{filter: 'brightness(0.7)', pointerEvents: 'none', userSelect: 'none'}}
                                     key = {to}>
                             {el}
                         </Typography>

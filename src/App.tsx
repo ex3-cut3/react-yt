@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { Navbar } from './components';
 import { routes } from './pages/routes';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { Suspense, useEffect } from 'react';
+import { Fragment, Suspense, useEffect } from 'react';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { DEFAULT_COLOR } from './utils/constants';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -34,7 +34,7 @@ function App() {
         <ThemeProvider theme = {theme}>
             <Box sx = {{backgroundColor: '#000'}}>
                 <Navbar/>
-                <TransitionGroup component = {null}>
+                <TransitionGroup component = {Fragment}>
                     <CSSTransition key = {location.key} classNames = "fade" timeout = {300}>
                         <Routes>
                             {

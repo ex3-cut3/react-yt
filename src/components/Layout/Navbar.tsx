@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from 'react';
+import React, { lazy, Suspense, useCallback, useState } from 'react';
 import { DEFAULT_CATEGORY, DEFAULT_COLOR, LOGO_IMG_LINK, settings } from '../../utils/constants';
 import {
     Avatar,
@@ -6,7 +6,7 @@ import {
     Divider,
     Fade,
     IconButton,
-    Link,
+    ListItemIcon,
     Menu,
     MenuItem,
     Stack,
@@ -18,10 +18,8 @@ import { appSelector } from '../../store/slices/AppSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { DebounceInput } from 'react-debounce-input';
-import {
-    Link as RouterLink,
-} from 'react-router-dom';
 import Breadcrumb from './Breadcrumbs';
+import { Settings } from '@mui/icons-material';
 
 const Navbar = () => {
     const {setSelectedCategory} = useActions();
@@ -81,7 +79,7 @@ const Navbar = () => {
                 }}
                 value = {color!}
                 debounceTimeout = {200}
-                onChange = {handleColorChange}/>
+                onChange = {useCallback(handleColorChange, [])}/>
             <Suspense fallback>
                 <SearchBar/>
             </Suspense>
@@ -110,6 +108,9 @@ const Navbar = () => {
                       open = {!!anchorElUser} anchorEl = {anchorElUser}>
                     {settings.map((setting) => (
                         <MenuItem key = {setting} onClick = {handleCloseUserMenu}>
+                            <ListItemIcon>
+                                <Settings fontSize="small" />
+                            </ListItemIcon>
                             <Typography textAlign = "center">{setting}</Typography>
                         </MenuItem>
                     ))}

@@ -17,9 +17,7 @@ const Sidebar = () => {
             width: {xs: '99.9vw', md: 'auto'},
         }}>
             {categories.map(category => (
-                <button className = {`category-btn ${category.name === selectedCategory ? 'active-category' : ''}`} key = {category.name} style = {{
-                    color: 'white',
-                    }}
+                <button className = {`category-btn ${category.name === selectedCategory ? 'active-category' : ''}`} key = {category.name}
                         onClick = {() => setSelectedCategory(category.name)}>
                     <span className = 'category-icon' style = {{
                         color: category.name === selectedCategory ? 'white' : 'var(--base-color)',
@@ -31,6 +29,12 @@ const Sidebar = () => {
                     </span>
                 </button>
             ))}
+            <Typography className = 'copyright' variant = 'body2' sx = {{
+                mt: 1.5,
+                color: '#FFF',
+                textAlign: 'center',
+
+            }}>Copyright as for ex3-cut3</Typography>
         </Stack>
     );
 };

@@ -18,6 +18,10 @@ const VideoCard = ({video}: { video: VideoItem }) => {
         snippet: {title, channelId, channelTitle, thumbnails: {high: {url: urlHigh}}}
     } = video;
 
+    function getVideoTitle() {
+        return fixSpecialCharsInText(title && title.length >= 60 ? title.slice(0, 60) + '...' : title) || demoVideoTitle.slice(0, 60) + '...'
+    }
+
     return (
         <Card className = 'video-card'
               sx = {{boxShadow: "none", borderRadius: 0}}>
@@ -33,7 +37,7 @@ const VideoCard = ({video}: { video: VideoItem }) => {
             <CardContent sx = {{backgroundColor: "#1E1E1E", height: '108px'}}>
                 <Link to = {videoId ? `/video/${videoId}` : demoVideoUrl}>
                     <Typography variant = "subtitle1" fontWeight = "bold" color = "#FFF">
-                        {fixSpecialCharsInText(title && title.length >= 60 ? title.slice(0, 60) + '...' : title) || demoVideoTitle.slice(0, 60) + '...'}
+                        {getVideoTitle()}
                     </Typography>
                 </Link>
                 <Link to = {channelId ? `/channel/${channelId}` : demoChannelUrl}>
