@@ -14,6 +14,7 @@ import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
 import { SvgIcon } from '@mui/material';
 import PersonalInfoForm from '../components/Forms/Sign-up/PersonalInfoForm';
 import PasswordForm from '../components/Forms/Sign-up/PasswordForm';
+import Review from '../pages/form/Review';
 
 export const LOGO_IMG_LINK = 'https://i.ibb.co/s9Qys2j/logo.png';
 export const DEFAULT_CATEGORY = 'New';
@@ -24,7 +25,7 @@ export enum ENDPOINTS {
 
 export const steps = [ 'General info', 'Password'];
 export const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-export const signUpForms = [PersonalInfoForm, PasswordForm];
+export const signUpForms = [PersonalInfoForm, PasswordForm, Review];
 
 export const categories: { name: string, icon: typeof SvgIcon }[] = [
     {name: DEFAULT_CATEGORY, icon: HomeIcon,},

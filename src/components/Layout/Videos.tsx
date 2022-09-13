@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Stack } from '@mui/material';
 import VideoCard from '../Cards/VideoCard';
 import ChannelCard from '../Cards/ChannelCard';

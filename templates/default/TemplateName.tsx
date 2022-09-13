@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-// @ts-ignore
+import { useEffect, useState } from 'react';
 import styles from './templateName.module.scss';
 
 const TemplateName = ({}: {}) => {

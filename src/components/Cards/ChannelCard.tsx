@@ -1,6 +1,5 @@
-import React from 'react';
 import { Box, CardContent, CardMedia, Typography } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { VideoItem } from '../../models/videoModels';
 import { demoProfilePicture } from '../../utils/constants';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';

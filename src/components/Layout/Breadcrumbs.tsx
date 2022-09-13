@@ -1,6 +1,6 @@
 import { Box, Breadcrumbs, Link, Typography } from '@mui/material';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { routes } from '../../pages/routes';
 
 const LinkRouter = ({to, children}: { to: string, children: any }) => {

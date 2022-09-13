@@ -3,16 +3,14 @@ import Container from '@mui/material/Container';
 import PersonalInfoForm from '../components/Forms/Sign-up/PersonalInfoForm';
 import { Box, Button, StepLabel } from '@mui/material';
 import Stepper from '@mui/material/Stepper';
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import { steps } from '../utils/constants';
 import Step from '@mui/material/Step';
 import Review from './form/Review';
 import PasswordForm from '../components/Forms/Sign-up/PasswordForm';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const BaseForm = () => {
     const [ currentStep, setCurrentStep ] = useState(0);
-
 
     function getStepContent(step: number) {
         switch (step) {
@@ -74,11 +72,7 @@ const BaseForm = () => {
                             {`${currentStep === steps.length - 1 ? 'Submit' : 'Next'}`}
                         </Button>}
                 </Box>
-                <TransitionGroup component = {Fragment}>
-                    <CSSTransition key = {currentStep} classNames = 'fade' timeout = {600}>
                         {getStepContent(currentStep)}
-                    </CSSTransition>
-                </TransitionGroup>
             </form>
         </Container>
     );

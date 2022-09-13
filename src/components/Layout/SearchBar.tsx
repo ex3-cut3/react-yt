@@ -1,11 +1,12 @@
 import { ChangeEvent, FormEvent, memo, useState } from 'react';
 import { IconButton, Paper } from '@mui/material';
-import { Search } from '@mui/icons-material';
 import { useActions, useAppSelector } from '../../store/store';
 import { appSelector } from '../../store/slices/AppSlice';
 import { useNavigate } from 'react-router-dom';
+import { Search } from '@mui/icons-material';
 
 const SearchBtnIcon = memo(() => {
+
     return <IconButton type = 'submit' sx = {{p: '10px', color: 'violet'}}>
         <Search/>
     </IconButton>
