@@ -1,29 +1,26 @@
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import PersonalInfoForm from '../components/Forms/Sign-up/PersonalInfoForm';
 import { Box, Button, StepLabel } from '@mui/material';
 import Stepper from '@mui/material/Stepper';
 import { useState } from 'react';
-import { steps } from '../utils/constants';
+import { signUpForms, steps } from '../utils/constants';
 import Step from '@mui/material/Step';
-import Review from './form/Review';
-import PasswordForm from '../components/Forms/Sign-up/PasswordForm';
 
 const BaseForm = () => {
     const [ currentStep, setCurrentStep ] = useState(0);
 
-    function getStepContent(step: number) {
-        switch (step) {
-            case 0:
-                return <PersonalInfoForm/>;
-            case 1:
-                return <PasswordForm/>;
-            case 2:
-                return <Review/>;
-            default:
-                throw new Error('Unknown step');
-        }
-    }
+    // function getStepContent(step: number) {
+    //     switch (step) {
+    //         case 0:
+    //             return <PersonalInfoForm/>;
+    //         case 1:
+    //             return <PasswordForm/>;
+    //         case 2:
+    //             return <Review/>;
+    //         default:
+    //             throw new Error('Unknown step');
+    //     }
+    // }
 
     function handleNextBtnClick(e: any) {
         setCurrentStep(curStep => curStep + 1);
@@ -35,7 +32,7 @@ const BaseForm = () => {
 
     function handleBaseFormSubmit(e: any) {
         e.preventDefault()
-        // console.log(e)
+        console.log(e)
     }
 
     return (
@@ -72,7 +69,11 @@ const BaseForm = () => {
                             {`${currentStep === steps.length - 1 ? 'Submit' : 'Next'}`}
                         </Button>}
                 </Box>
-                        {getStepContent(currentStep)}
+                {signUpForms.map((formComponent, idx) =>
+                    <div className= {`animate__animated animate__fadeIn`} key = {idx} style = {{display: `${idx === currentStep ? 'initial' : 'none'}`}}>
+                        {formComponent()}
+                    </div>
+                )}
             </form>
         </Container>
     );

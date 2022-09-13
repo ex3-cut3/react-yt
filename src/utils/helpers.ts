@@ -13,3 +13,11 @@ export function formatSubsCount(count: string) {
 
     return `${formatter.format(+count)}+`;
 }
+
+export function validateLength(length: number, str: string){
+    return str.length >= length;
+}
+
+export function validateIfWordAndLength(length: number){
+    return (str: string) => validateLength(length, str) && /^[a-zA-Z]+$/.test(str);
+}
