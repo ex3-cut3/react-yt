@@ -14,7 +14,7 @@ const LinkRouter = ({to, children}: { to: string, children: any }) => {
     );
 };
 
-export function findRoutesByPath(paths: string[], idx: number){
+export function findRouteByPath(paths: string[], idx: number){
     const to = `/${paths.slice(0, idx + 1).join('/')}`;
     return {routeName: routes.find(route => route.path === to)?.name, route: to};
 }
@@ -28,7 +28,7 @@ const Breadcrumb = () => {
     }, [ location ]);
 
     const filteredPaths = pathnames.filter((value, index) => {
-        return findRoutesByPath(pathnames, index).routeName != null;
+        return findRouteByPath(pathnames, index).routeName != null;
     });
     console.log(filteredPaths)
 
@@ -50,7 +50,7 @@ const Breadcrumb = () => {
 
                 {filteredPaths.map((value, index) => {
                     const last = index === filteredPaths.length - 1;
-                    const {routeName: el, route: to} = findRoutesByPath(pathnames, index);
+                    const {routeName: el, route: to} = findRouteByPath(pathnames, index);
 
                     return last ? (
                         <Typography sx = {{filter: 'brightness(0.7)', pointerEvents: 'none', userSelect: 'none'}}

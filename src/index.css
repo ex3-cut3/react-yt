@@ -113,10 +113,6 @@ a {
     .category-sidebar {
 
         }
-
-    .category-sidebar:hover .category-name {
-        transform: scale(1);
-        }
     }
 
 .image-lift {
@@ -132,8 +128,9 @@ a {
     }
 
 .category-name {
-    transform: scale(0);
     font-size: 14px;
+    position: fixed;
+    left: -100%;
     opacity: 0;
     transition: 0.15s all linear;
     color: #fff;
@@ -171,10 +168,11 @@ a {
     }
 
 .category-sidebar:hover .category-name {
-    transform: scale(1);
     opacity: 1;
-    transition: 0.25s all linear;
+    transition: 0.15s all linear;
     visibility: visible;
+    float: none;
+    position: static;
     }
 
 .gradient-text {
