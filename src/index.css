@@ -115,11 +115,7 @@ a {
         }
 
     .category-sidebar:hover .category-name {
-        font-size: 12px
-        }
-
-    .video-card-container {
-
+        transform: scale(1);
         }
     }
 
@@ -136,10 +132,12 @@ a {
     }
 
 .category-name {
-    font-size: 0;
+    transform: scale(0);
+    font-size: 14px;
     opacity: 0;
     transition: 0.15s all linear;
     color: #fff;
+    visibility: collapse;
     mix-blend-mode: difference;
     filter: grayscale(1);
     }
@@ -173,9 +171,10 @@ a {
     }
 
 .category-sidebar:hover .category-name {
-    font-size: 14px;
+    transform: scale(1);
     opacity: 1;
     transition: 0.25s all linear;
+    visibility: visible;
     }
 
 .gradient-text {

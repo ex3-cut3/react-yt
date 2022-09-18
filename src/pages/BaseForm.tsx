@@ -5,6 +5,7 @@ import Stepper from '@mui/material/Stepper';
 import { useState } from 'react';
 import { signUpForms, steps } from '../utils/constants';
 import Step from '@mui/material/Step';
+import 'animate.css';
 
 const BaseForm = () => {
     const [ currentStep, setCurrentStep ] = useState(0);

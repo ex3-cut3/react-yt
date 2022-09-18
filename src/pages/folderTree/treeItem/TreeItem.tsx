@@ -1,5 +1,5 @@
 import { ListItemIcon, Menu, MenuItem } from '@mui/material';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CopyAll, Edit } from '@mui/icons-material';
 
 const TreeItem = ({itemTree}: { itemTree: ITreeItem }) => {
@@ -9,6 +9,7 @@ const TreeItem = ({itemTree}: { itemTree: ITreeItem }) => {
     const [ shownItemName, setShownItemName ] = useState(itemTree.name);
     const [ contextMenuPos, setContextMenuPos ] = useState<{ x: number, y: number } | null>(null);
     const isFolder = !!itemTree.childFolders?.length;
+
 
     function toggle() {
         setIsFolderOpen(prevState => !prevState);
@@ -35,8 +36,7 @@ const TreeItem = ({itemTree}: { itemTree: ITreeItem }) => {
         if (e.key === 'Enter') {
             setIsEditing(false);
             setShownItemName(e.target.value)
-        }
-        else if (e.key === 'Escape'){
+        } else if (e.key === 'Escape') {
             setIsEditing(false)
         }
     }
@@ -46,7 +46,7 @@ const TreeItem = ({itemTree}: { itemTree: ITreeItem }) => {
     };
 
     function handleAddChild() {
-        setChildFolders((prevChilds)=>[...prevChilds, {name: 'new stuff '+ Math.random().toFixed(3)}]);
+        setChildFolders((prevChilds) => [ ...prevChilds, {name: 'new stuff ' + Math.random().toFixed(3)} ]);
     }
 
     async function handleCopy() {
@@ -74,9 +74,11 @@ const TreeItem = ({itemTree}: { itemTree: ITreeItem }) => {
     return (
         <li>
             {isEditing ?
-                <input style = {{backgroundColor: 'transparent', width: '10%', color: 'whitesmoke'}} autoFocus
-                       type = 'text' defaultValue = {shownItemName} onKeyDown = {handleKeyDown}
-                       onBlur = {handleNameBlur}/>
+                <>
+                    <input style = {{backgroundColor: 'transparent', width: '10%', color: 'whitesmoke'}} autoFocus
+                           type = 'text' defaultValue = {shownItemName} onKeyDown = {handleKeyDown}
+                           onBlur = {handleNameBlur}/>
+                </>
                 :
                 <>
                     <div
@@ -113,7 +115,7 @@ const TreeItem = ({itemTree}: { itemTree: ITreeItem }) => {
                                 <Edit fontSize = "small"/>
                             </ListItemIcon>
                             Edit
-                        ♠</MenuItem>
+                            ♠</MenuItem>
                     </Menu>
                 </>
             }
@@ -124,7 +126,7 @@ const TreeItem = ({itemTree}: { itemTree: ITreeItem }) => {
                         <TreeItem key = {childFolder.name}
                                   itemTree = {childFolder}/>
                     )}
-                    <li style={{color: 'white', cursor: 'pointer'}} onClick = {handleAddChild}>Add Item</li>
+                    <li style = {{color: 'white', cursor: 'pointer'}} onClick = {handleAddChild}>Add Item</li>
                 </ul>}
         </li>
     );
